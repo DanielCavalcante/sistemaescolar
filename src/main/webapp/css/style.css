@@ -1,0 +1,21 @@
+a:hover {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:link {
+	text-decoration: none;
+}
+.systemAlert {
+	padding-top: 3px;
+	padding-bottom: 3px;
+	margin-bottom: 10px;
+}
+.navbar {
+	margin-top: 10px;
+}
+.conteudo {
+	padding-left: 45px;
+	padding-right: 45px;
+}
