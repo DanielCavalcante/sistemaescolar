@@ -45,28 +45,32 @@
 <div class="form-group">
 	<label class="col-sm-2 control-label"><fmt:message key="aluno.nacionalidade" /></label>
 	<div class="col-sm-3">
-		<select name="aluno.nacionalidade" id="aluno_nacionalidade" class="form-control">
+		<select name="aluno.nacionalidade" id="alunoNacionalidade" class="form-control">
 			<option value=""><fmt:message key="menu.selecione" /></option>
 			<c:forEach items="${listaNacionalidade}" var="n">
 				<option value="${n.label}" ${n.label eq aluno.nacionalidade ? "selected='selected'" : ""}>${n.label}</option>
 			</c:forEach>
 		</select>
 	</div>
-	<label class="col-sm-2 control-label"><fmt:message key="aluno.uf.nascimento" /></label>
-	<div class="col-sm-3">
-		<select id="estadoSelect" name="aluno.estadoNascimento.id" class="form-control">
-			<option value=""><fmt:message key="menu.selecione" /></option>
-			<c:forEach items="${listaEstados}" var="uf">
-				<option value="${uf.id}" ${uf.id eq aluno.estadoNascimento.id ? "selected='selected'" : ""}>${uf.nome}</option>
-			</c:forEach>
-		</select>
+	<div id="estado">
+		<label class="col-sm-2 control-label"><fmt:message key="aluno.uf.nascimento" /></label>
+		<div class="col-sm-3">
+			<select id="estadoSelect" name="aluno.estadoNascimento.id" class="form-control">
+				<option value=""><fmt:message key="menu.selecione" /></option>
+				<c:forEach items="${listaEstados}" var="uf">
+					<option value="${uf.id}" ${uf.id eq aluno.estadoNascimento.id ? "selected='selected'" : ""}>${uf.nome}</option>
+				</c:forEach>
+			</select>
+		</div>
 	</div>
 </div>
 <div class="form-group">
-	<label class="col-sm-2 control-label"><fmt:message key="aluno.cidade" /></label>
-	<div class="col-sm-3">
-		<select id="cidadesSelect" name="aluno.cidadeNascimento.id" class="form-control">
-			<option value=""><fmt:message key="menu.selecione" /></option>
-		</select>
+	<div id="cidade">
+		<label class="col-sm-2 control-label"><fmt:message key="aluno.cidade" /></label>
+		<div class="col-sm-3">
+			<select id="cidadesSelect" name="aluno.cidadeNascimento.id" class="form-control">
+				<option value=""><fmt:message key="menu.selecione" /></option>
+			</select>
+		</div>
 	</div>
 </div>

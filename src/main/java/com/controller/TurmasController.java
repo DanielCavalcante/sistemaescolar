@@ -32,10 +32,11 @@ public class TurmasController extends ControllerUtil {
 		
 		if (filtro == null || filtro.getNome() == null)
 			list = (List<Turma>) repository.list();
-		else 
+		else
 			list = repository.find(filtro);
 		
 		inbox.listaVazia(list);
+		result.include("turmaList", list);
 		result.include("filtro", filtro);
 		return (List<Turma>) list;
 	}

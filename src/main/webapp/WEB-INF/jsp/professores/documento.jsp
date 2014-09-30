@@ -3,7 +3,7 @@
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-     					<fmt:message key="documento.documento" />
+   					<fmt:message key="documento.documento" />
 				</a>
 			</h4>
 		</div>
@@ -71,7 +71,7 @@
 					</div>
 					<label class="col-sm-2 control-label"><fmt:message key="documento.modelo" /></label>
 					<div class="col-sm-3">
-						<select name="professor.documento.modeloCertidao" ng-model="modeloSelection" class="form-control">
+						<select name="professor.documento.modeloCertidao" id="modeloCertidao" class="form-control">
 							<option value=""><fmt:message key="menu.selecione" /></option>
 							<c:forEach items="${listaModelos}" var="m">
 								<option value="${m.label}" ${m.label eq professor.documento.modeloCertidao ? "selected='selected'" : ""}>${m.label}</option>
@@ -79,53 +79,55 @@
 						</select>
 					</div>
 				</div>
-				<div class="form-group" ng-show="isCheckboxSelected('Modelo')">
+				<div class="form-group" id="modeloNovo">
 					<label class="col-sm-2 control-label"><fmt:message key="documento.numero" /></label>
 					<div class="col-sm-3">
 						<input name="professor.documento.numeroMatricula" value="${professor.documento.numeroMatricula}" type="text" class="form-control" placeholder="<fmt:message key="documento.numero.matricula" />" />
 					</div>
 				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label"><fmt:message key="documento.numero.termo" /></label>
-					<div class="col-sm-3">
-						<input name="professor.documento.numeroDoTermo" value="${professor.documento.numeroDoTermo}" type="text" class="form-control" placeholder="<fmt:message key="documento.numero.termo" />">
+				<div id="modeloAntigo">
+					<div class="form-group">
+						<label class="col-sm-2 control-label"><fmt:message key="documento.numero.termo" /></label>
+						<div class="col-sm-3">
+							<input name="professor.documento.numeroDoTermo" value="${professor.documento.numeroDoTermo}" type="text" class="form-control" placeholder="<fmt:message key="documento.numero.termo" />">
+						</div>
+						<label class="col-sm-2 control-label"><fmt:message key="documento.data" /></label>
+						<div class="col-sm-3">
+							<input name="professor.documento.dataEmissaoCertidao" value="${professor.documento.dataEmissaoCertidao}" type="text" class="form-control" placeholder="<fmt:message key="documento.data.emissao" />">
+						</div>
 					</div>
-					<label class="col-sm-2 control-label"><fmt:message key="documento.data" /></label>
-					<div class="col-sm-3">
-						<input name="professor.documento.dataEmissaoCertidao" value="${professor.documento.dataEmissaoCertidao}" type="text" class="form-control" placeholder="<fmt:message key="documento.data.emissao" />">
+					<div class="form-group">
+						<label class="col-sm-2 control-label"><fmt:message key="documento.folha" /></label>
+						<div class="col-sm-3">
+							<input name="professor.documento.folhaDoTermo" value="${professor.documento.folhaDoTermo}" type="text" class="form-control" placeholder="<fmt:message key="documento.folha" />">
+						</div>
+						<label class="col-sm-2 control-label"><fmt:message key="documento.livro" /></label>
+						<div class="col-sm-3">
+							<input name="professor.documento.livro" value="${professor.documento.livro}" type="text" class="form-control" placeholder="<fmt:message key="documento.livro" />">
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label"><fmt:message key="documento.folha" /></label>
-					<div class="col-sm-3">
-						<input name="professor.documento.folhaDoTermo" value="${professor.documento.folhaDoTermo}" type="text" class="form-control" placeholder="<fmt:message key="documento.folha" />">
+					<div class="form-group">
+						<label class="col-sm-2 control-label"><fmt:message key="documento.uf.cartorio" /></label>
+						<div class="col-sm-3">
+							<select name="professor.documento.ufCartorio" id="documentoEstadoSelect" class="form-control">
+								<option value=""><fmt:message key="menu.selecione" /></option>
+								<c:forEach items="${listaEstados}" var="estado">
+									<option value="${estado.id}">${estado.nome}</option>
+								</c:forEach>
+							</select>
+						</div>
+						<label class="col-sm-2 control-label"><fmt:message key="documento.cidade" /></label>
+						<div class="col-sm-3">
+							<select name="professor.documento.cidadeCartorio" id="documentoCidadesSelect" class="form-control">
+								<option value=""><fmt:message key="menu.selecione" /></option>
+								</select> 
+							</div> 
 					</div>
-					<label class="col-sm-2 control-label"><fmt:message key="documento.livro" /></label>
-					<div class="col-sm-3">
-						<input name="professor.documento.livro" value="${professor.documento.livro}" type="text" class="form-control" placeholder="<fmt:message key="documento.livro" />">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label"><fmt:message key="documento.uf.cartorio" /></label>
-					<div class="col-sm-3">
-						<select name="professor.documento.ufCartorio" id="documentoEstadoSelect" class="form-control">
-							<option value=""><fmt:message key="menu.selecione" /></option>
-							<c:forEach items="${listaEstados}" var="estado">
-								<option value="${estado.id}">${estado.nome}</option>
-							</c:forEach>
-						</select>
-					</div>
-					<label class="col-sm-2 control-label"><fmt:message key="documento.cidade" /></label>
-					<div class="col-sm-3">
-						<select name="professor.documento.cidadeCartorio" id="documentoCidadesSelect" class="form-control">
-							<option value=""><fmt:message key="menu.selecione" /></option>
-							</select> 
-						</div> 
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label"><fmt:message key="documento.nome.cartorio" /></label> 
-					<div class="col-sm-3">
-						<input type="text" name="professor.documento.nomeCartorio" class="form-control" placeholder="<fmt:message key="documento.nome.cartorio" />" />
+					<div class="form-group">
+						<label class="col-sm-2 control-label"><fmt:message key="documento.nome.cartorio" /></label> 
+						<div class="col-sm-3">
+							<input type="text" name="professor.documento.nomeCartorio" class="form-control" placeholder="<fmt:message key="documento.nome.cartorio" />" />
+						</div>
 					</div>
 				</div>
 			</div>

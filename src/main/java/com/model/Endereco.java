@@ -28,5 +28,5 @@ public class Endereco extends AbstractEntity {
 	@OneToOne
 	@JoinColumn(name="id_cidade", nullable = false)
 	private Cidade cidade;
-
+	
 }

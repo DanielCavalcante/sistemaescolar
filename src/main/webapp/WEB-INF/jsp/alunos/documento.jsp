@@ -78,20 +78,16 @@
 						<label class="col-sm-2 control-label"><fmt:message
 								key="documento.cidade" /></label>
 						<div class="col-sm-3">
-							<select name="aluno.documento.cidadeCartorio.id"
-								id="documentoCidadesSelect" class="form-control">
+							<select name="aluno.documento.cidadeCartorio.id" id="documentoCidadesSelect" class="form-control">
 								<option value=""><fmt:message key="menu.selecione" /></option>
 							</select>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-2 control-label"><fmt:message
-								key="documento.nome.cartorio" /></label>
+						<label class="col-sm-2 control-label"><fmt:message key="documento.nome.cartorio" /></label>
 						<div class="col-sm-3">
-							<input name="aluno.documento.nomeCartorio"
-								value="${aluno.documento.nomeCartorio}" type="text"
-								class="form-control"
-								placeholder="<fmt:message key="documento.nome.cartorio" />" />
+							<input name="aluno.documento.nomeCartorio" value="${aluno.documento.nomeCartorio}" type="text" 
+							class="form-control" placeholder="<fmt:message key="documento.nome.cartorio" />" />
 						</div>
 					</div>
 				</div>

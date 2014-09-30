@@ -31,11 +31,11 @@ public abstract class GenericBusiness<T extends AbstractEntity> implements
 		this.clazz = clazz;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Collection<T> list() {
 		Query query = manager.createQuery("from " + clazz.getName());
 
-		@SuppressWarnings("unchecked")
 		Collection<T> list = query.getResultList();
 
 		return list;

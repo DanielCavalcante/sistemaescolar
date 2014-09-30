@@ -3,7 +3,6 @@ package com.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -49,6 +48,7 @@ public class AlunosController extends ControllerUtil {
 			list = repository.find(filtro);
 		
 		inbox.listaVazia(list);
+		result.include("alunoList", list);
 		result.include("filtro", filtro);
 		return list;
 	}
@@ -146,8 +146,7 @@ public class AlunosController extends ControllerUtil {
 	
 	private boolean validator (Aluno aluno) {
 		return !ValidatorUtils.isEmpty(aluno.getNome()) &&
-				!ValidatorUtils.isEmpty(aluno.getDataNascimento()) ||
-				!ValidatorUtils.isEmpty(aluno.getDataNascimento().before(new Date())) &&
+				!ValidatorUtils.isEmpty(aluno.getDataNascimento()) &&
 				!ValidatorUtils.isEmpty(aluno.getFiliacaoMae()) &&
 				!ValidatorUtils.isEmpty(aluno.getFiliacaoPai()) &&
 				!ValidatorUtils.isEmpty(aluno.getRaca()) &&

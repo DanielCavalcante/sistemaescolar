@@ -29,6 +29,7 @@ public class UsuariosController extends ControllerUtil {
 	public List<Usuario> list() {
 		List<Usuario> list = (List<Usuario>) repository.list();
 		inbox.listaVazia(list);
+		result.include("usuarioList", list);
 		return list;
 	}
 	
@@ -76,6 +77,7 @@ public class UsuariosController extends ControllerUtil {
 			usuarioSessao.invalidaSessao();
 			result.redirectTo(LoginController.class).login();
 		}
+		result.include("usuario", usuario);
 		setDados();
 		return usuario;
 	}

@@ -1,5 +1,9 @@
 <form action="<c:url value='/professores/save' />" method="post" class="form-horizontal">
 	<input type="hidden" name="professor.id" value="${professor.id}" />
+	<input type="hidden" id="idCidadeNascimento" value="${professor.cidadeNascimento.id}" />
+	<input type="hidden" id="idCidadeCartorio" value="${professor.cidadeCartorio.id}" />
+	<input type="hidden" id="idCidadeEndereco" value="${professor.estadoNascimento.id}" />
+	
 	<div class="row">
 		<div class="form-inline">
 			<button onclick="voltar()" class="btn btn-default"> 

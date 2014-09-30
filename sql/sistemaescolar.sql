@@ -1,4 +1,5 @@
 drop table if exists aluno cascade;
+drop table if exists escola cascade;
 drop table if exists documento cascade;
 drop table if exists endereco cascade;
 drop table if exists turma cascade;
@@ -16,7 +17,7 @@ create table usuario (
 	login text not null,
 	senha varchar(10) not null,
 	root boolean default false,
-	perfil_id bigint not null,
+	id_perfil bigint not null,
 	constraint pk_usuario primary key(id)
 );
 
@@ -25,6 +26,22 @@ create table perfil (
 	nome text not null,
 	permissoes text not null,
 	constraint pk_perfil primary key (id)
+);
+
+create table escola (
+	id bigserial not null,
+	nome text not null,
+	codigo_escola text,
+	cnpj text not null,
+	id_endereco bigint,
+	telefone text,
+	fax text,
+	email text,
+	cod_orgao_regional integer,
+	nome_orgao_regional text,
+	localizacao text,
+	dependencia_administrativa text,
+	constraint pk_escola primary key(id)
 );
 
 create table aluno (
@@ -133,7 +150,9 @@ create table estado (
 );
 
 --Foreigns Keys
-alter table usuario add constraint fk_usuario_perfil foreign key (perfil_id) references perfil(id);
+alter table usuario add constraint fk_usuario_perfil foreign key (id_perfil) references perfil(id);
+
+alter table escola add constraint fk_escola_endereco foreign key (id_endereco) references endereco(id);
 
 alter table aluno add constraint fk_aluno_deficiencia foreign key (id_deficiencia) references deficiencia (id);
 alter table aluno add constraint fk_aluno_documento foreign key (id_documento) references documento (id);

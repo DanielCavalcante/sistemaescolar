@@ -37,8 +37,7 @@ public class Turma extends AbstractEntity {
 	@ManyToMany(mappedBy = "turmas", cascade = CascadeType.ALL)
 	private List<Aluno> alunos;
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "turma_professor", joinColumns = @JoinColumn(name = "id_turma"), 
-	inverseJoinColumns = @JoinColumn(name = "id_professor"))
+	@JoinTable(name = "turma_professor", joinColumns = @JoinColumn(name = "id_turma"), inverseJoinColumns = @JoinColumn(name = "id_professor"))
 	private List<Professor> professores;
-
+	
 }

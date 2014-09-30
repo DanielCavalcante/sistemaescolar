@@ -42,7 +42,7 @@
 		<input name="aluno.deficiencia" id="deficiencia" value="${aluno.deficiencia}" type="checkbox" checked="${aluno.deficiencia}"/> 
 	</div>
 </div>
-<div class="form-group">
+<div class="form-group" id="deficiencias">
 	<label class="col-sm-2 control-label"><fmt:message key="aluno.tipo.deficiencia" /></label>
 	<div class="col-sm-3">	
 		<c:forEach items="${listaDeficiencias}" var="item" varStatus="index">

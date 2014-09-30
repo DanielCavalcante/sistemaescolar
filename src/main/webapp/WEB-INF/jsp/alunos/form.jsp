@@ -23,20 +23,18 @@
 			<li><a href="#turma" data-toggle="tab"><fmt:message key="menu.turma" /></a></li>
 		</ul>
 	</div>
-	<div class="row">
-		<div class="tab-content">
-			<div class="tab-pane active" id="informacoes">
-				<jsp:include page="alunos.jsp"></jsp:include>
-			</div>
-			<div class="tab-pane" id="documento">
-				<jsp:include page="documento.jsp"></jsp:include>
-			</div>
-			<div class="tab-pane" id="endereco">
-				<jsp:include page="endereco.jsp"></jsp:include>
-			</div>
-			<div class="tab-pane" id="turma">
-				<jsp:include page="turma.jsp"></jsp:include>
-			</div>
+	<div class="tab-content">
+		<div class="tab-pane active" id="informacoes">
+			<jsp:include page="alunos.jsp"></jsp:include>
+		</div>
+		<div class="tab-pane" id="documento">
+			<jsp:include page="documento.jsp"></jsp:include>
+		</div>
+		<div class="tab-pane" id="endereco">
+			<jsp:include page="endereco.jsp"></jsp:include>
+		</div>
+		<div class="tab-pane" id="turma">
+			<jsp:include page="turma.jsp"></jsp:include>
 		</div>
 	</div>
 </form>

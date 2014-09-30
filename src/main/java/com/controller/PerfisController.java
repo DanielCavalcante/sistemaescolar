@@ -26,6 +26,7 @@ public class PerfisController extends ControllerUtil {
 	public List<Perfil> list() {
 		List<Perfil> list = (List<Perfil>) repository.list();
 		inbox.listaVazia(list);
+		result.include("perfilList", list);
 		return list;
 	}
 	

@@ -65,7 +65,7 @@ public class Aluno extends AbstractEntity {
 	@JoinColumn(name = "id_endereco")
 	private Endereco endereco;
 	
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@ManyToMany
 	@JoinTable(name = "aluno_turma", joinColumns = @JoinColumn(name = "id_aluno"), 
 	inverseJoinColumns = @JoinColumn(name = "id_turma"))
 	private List<Turma> turmas;
@@ -93,5 +93,5 @@ public class Aluno extends AbstractEntity {
 		}
 		return lista;
 	}
-
+	
 }

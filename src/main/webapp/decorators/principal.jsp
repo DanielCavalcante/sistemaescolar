@@ -11,7 +11,7 @@
 		<title><fmt:message key="sistema.title" /></title>
 		<decorator:head/>
 	</head>
-	<body ng-app="myApp">
+	<body>
 		<div class="container">
 			<div id="menu">
 				<jsp:include page="menu.jsp"></jsp:include>

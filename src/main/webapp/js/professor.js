@@ -1,15 +1,33 @@
-var $scope;
-function nacionalidadeController($scope) {
-    $scope.nacionalidadeSelection = '';
-    $scope.isNacionalidadeSelected = function(index) {
-        return index === $scope.nacionalidadeSelection;
-    };
+function modeloCertidao() {
+	var modelo = $("#modeloCertidao").val();
+	if (modelo != 'Modelo antigo' && modelo != 'Modelo novo') {
+		$('#modeloNovo').hide();
+		$('#modeloAntigo').hide();
+    } else if (modelo === 'Modelo antigo') {
+		$('#modeloNovo').hide();
+		$('#modeloAntigo').show(); 
+	} else if (modelo === 'Modelo novo') {
+		$('#modeloAntigo').hide();
+		$('#modeloNovo').show();
+	}
 }
-function modeloSelection($scope) {
-    $scope.nacionalidadeSelection = '';
-    $scope.isNacionalidadeSelected = function(index) {
-        return index === $scope.nacionalidadeSelection;
-    };
+$(document).ready(function(){
+	modeloCertidao();
+	nacionalidade();
+});
+$('#modeloCertidao').change(function(){
+	modeloCertidao();
+});
+$('#nacionalidade').change(function(){
+	nacionalidade();
+});
+function nacionalidade() {
+	var nacionalidade = $("#nacionalidade").val();
+	if (nacionalidade === 'Brasileiro') {
+		$("#estadoCidade").show();
+	} else {
+		$("#estadoCidade").hide();
+	}
 }
 $(function () {
     $('#professorDataNascimento').datetimepicker({

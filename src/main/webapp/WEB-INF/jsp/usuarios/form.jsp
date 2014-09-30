@@ -15,7 +15,12 @@
 		</div>
 	</div>
 	<div class="row">
-		<h3><fmt:message key="usuario.cadastrar" /></h3>
+		<c:if test="${alterarMeusDados}">
+			<h3><fmt:message key="msg.usuario.atualiza.informacoes" /></h3>			
+		</c:if>
+		<c:if test="${!alterarMeusDados}">
+			<h3><fmt:message key="usuario.cadastrar" /></h3>
+		</c:if>
 		<div class="form-group">
 			<label class="col-sm-2 control-label"><fmt:message key="usuario.nome" /></label>
 			<div class="col-sm-4">

@@ -1,7 +1,8 @@
-<nav class="navbar navbar-inverse menu">
+<nav class="navbar navbar-inverse">
 	<div class="container-fluid">
+		<a class="navbar-brand" href="${context}/index"><fmt:message key="sistema.title" /></a>
 		<ul class="nav navbar-nav">
-			<li><a href="${context}/index"><span class="glyphicon glyphicon-home"></span></a></li>
+			<li><a href="${context}/escola"><fmt:message key="menu.escola" /></a></li>
 			<li><a href="${context}/alunos"><fmt:message key="menu.alunos" /></a></li>
 			<li><a href="${context}/turmas"><fmt:message key="menu.turmas" /></a></li>
 			<li><a href="${context}/professores"><fmt:message key="menu.professores" /></a></li>

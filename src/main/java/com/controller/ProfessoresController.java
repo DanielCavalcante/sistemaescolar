@@ -45,6 +45,7 @@ public class ProfessoresController extends ControllerUtil {
 			list = repository.find(filtro);
 			
 		inbox.listaVazia(list);
+		result.include("professorList", list);
 		result.include("filtro", filtro);
 		return list;
 	}
@@ -59,9 +60,10 @@ public class ProfessoresController extends ControllerUtil {
 	@Permissao(permissoes={com.util.enums.Permissao.PROFESSOR_CRIAR, com.util.enums.Permissao.PROFESSOR_EDITAR})
 	public void save(Professor professor) throws ParseException {
 		try {
-			if (!validate(professor)) {
+			if (!validator(professor)) {
 				inbox.informeTodosOsCamposObrigatorios();
 				result.include("professor", professor);
+				setDados();
 				result.redirectTo(this).create();
 			} else {
 				if (professor.getDocumento() != null && 
@@ -81,11 +83,11 @@ public class ProfessoresController extends ControllerUtil {
 				professor.setDataNascimento(sdf.parse(data));
 				professor = repository.save(professor);
 				inbox.message("msg.save.success").success();
+				result.redirectTo(this).list(null);
 			}
 		} catch (Exception e) {
 			inbox.operacaoNaoRealizada();
 		}
-		result.redirectTo(this).list(null);
 	}
 	
 	@Path("/edit/{id}")
@@ -127,7 +129,7 @@ public class ProfessoresController extends ControllerUtil {
 		result.include("listaTurmas", turmaRepository.list());
 	}
 	
-	private boolean validate(Professor professor) {
+	private boolean validator(Professor professor) {
 		return !ValidatorUtils.isEmpty(professor.getNome()) &&
 				!ValidatorUtils.isEmpty(professor.getDataNascimento()) &&
 				!ValidatorUtils.isEmpty(professor.getSexo()) &&
@@ -137,9 +139,10 @@ public class ProfessoresController extends ControllerUtil {
 				!ValidatorUtils.isEmpty(professor.getCidadeNascimento()) ||
 				!ValidatorUtils.isEmpty(professor.getCidadeNascimento().getId()) &&
 				!ValidatorUtils.isEmpty(professor.getEndereco()) ||
-				!ValidatorUtils.isEmpty(professor.getEndereco().getId()) || 
+				!ValidatorUtils.isEmpty(professor.getEndereco().getId()) && 
 				!ValidatorUtils.isEmpty(professor.getEndereco().getCep()) &&
 				!ValidatorUtils.isEmpty(professor.getEndereco().getRua()) &&
+				!ValidatorUtils.isEmpty(professor.getEndereco()) ||
 				!ValidatorUtils.isEmpty(professor.getEndereco().getUf()) ||
 				!ValidatorUtils.isEmpty(professor.getEndereco().getUf().getId()) &&
 				!ValidatorUtils.isEmpty(professor.getEndereco().getCidade()) ||

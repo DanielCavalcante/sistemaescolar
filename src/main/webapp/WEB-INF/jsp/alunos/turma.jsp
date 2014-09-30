@@ -1,12 +1,11 @@
 <h4><fmt:message key="aluno.vincular.turma" /></h4>
 <div class="form-group">
-	<div class="col-md-3">
+	<c:forEach items="${listaTurmas}" var="t" varStatus="index">
 		<label class="col-sm-2 control-label"><fmt:message key="aluno.nome.turma" /></label>
-		<c:forEach items="${listaTurmas}" var="t">
+		<div class="col-sm-3">
 			<div class="checkbox">
-				<input name="aluno.turmas.id" value="${t.nome}" type="checkbox" />
-				${t.codigoEscola} - ${t.nome}
+				<input name="aluno.turmas[${index.index}].id" value="${t.id}" type="checkbox" />${t.codigoEscola} - ${t.nome}
 			</div>
-		</c:forEach>
-	</div>
+		</div>
+	</c:forEach>
 </div>
