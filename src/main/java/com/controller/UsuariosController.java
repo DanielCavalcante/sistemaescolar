@@ -3,6 +3,7 @@ package com.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.persistence.EntityExistsException;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
@@ -41,31 +42,57 @@ public class UsuariosController extends ControllerUtil {
 	
 	@Post("/save")
 	@Permissao(permissoes={com.util.enums.Permissao.USUARIO_CRIAR, com.util.enums.Permissao.USUARIO_EDITAR})
-	public void save(Usuario usuario) {
+	public void save(Usuario usuario, boolean alterarMeusDados) {
+		boolean erro = true;
 		try {
 			if (!validate(usuario)) {
-				result.include("usuario", usuario);
 				inbox.informeTodosOsCamposObrigatorios();
-				result.redirectTo(this).create();
+			} else if (!usuario.getSenha().trim().equals(usuario.getConfirmSenha().trim())) {
+				inbox.message("msg.senhas.devem.ser.iguais").warning();
 			} else {
-				usuario = repository.save(usuario);
-				inbox.message("msg.save.success").success();
+				repository.saveUsuario(usuario);
+				if (usuario.getId().equals(usuarioSessao.getUsuario().getId())) {
+					usuarioSessao.setUsuario(usuario);
+				}
+				
+				usuario.setConfirmSenha(usuario.getSenha());
+				inbox.message("msg.usuario.usuario.save.success").success();
+				erro = false;
 			}
+		} catch (EntityExistsException e) {
+			inbox.message("msg.usuario.login.existe", "'"+usuario.getLogin()+"'").warning();
 		} catch (Exception e) {
+			e.printStackTrace();
 			inbox.operacaoNaoRealizada();
 		}
-		result.redirectTo(this).list();
+		
+		if (alterarMeusDados) {
+			result.redirectTo(this).form(usuario);
+		} else {
+			if (erro) {
+				if (usuario.getId() == null) {
+					result.include("usuario", usuario);
+					result.redirectTo(this).create();
+				} else {
+					result.redirectTo(this).edit(usuario.getId(), usuario);
+				}
+			} else {
+				result.redirectTo(this).list();
+			}
+		}
+		
 	}
 
 	@Path("/edit/{id}")
 	@Permissao(permissoes=com.util.enums.Permissao.USUARIO_EDITAR)
-	public void edit(Long id) {
-		Usuario usuario = null;
-		if (id != null) {
+	public Usuario edit(Long id, Usuario usuario) {
+		if (usuario == null || (usuario != null && usuario.getId() == null)) {
 			usuario = repository.find(id);
-			result.include("usuario", usuario);
+			usuario.setConfirmSenha(usuario.getSenha());
 		}
+		result.include("usuario", usuario);
 		setDados();
+		return usuario;
 	}
 	
 	@Path("/meusDados")
@@ -73,12 +100,13 @@ public class UsuariosController extends ControllerUtil {
 		result.include(ALTERAR_MEUS_DADOS, true);
 		if (usuario == null || (usuario != null) && usuario.getId() == null) {
 			usuario = repository.find(usuarioSessao.getUsuario().getId());
-		} else {
-			usuarioSessao.invalidaSessao();
-			result.redirectTo(LoginController.class).login();
+			usuario.setConfirmSenha(usuario.getSenha());
+		} 
+		if (!usuarioSessao.isSenhaAtualizada()) {
+			inbox.message("msg.usuario.atualiza.senha");
 		}
-		result.include("usuario", usuario);
 		setDados();
+		result.include("usuario", usuario);
 		return usuario;
 	}
 
@@ -108,6 +136,7 @@ public class UsuariosController extends ControllerUtil {
 		return !ValidatorUtils.isEmpty(usuario.getNome()) &&
 				!ValidatorUtils.isEmpty(usuario.getLogin()) &&
 				!ValidatorUtils.isEmpty(usuario.getSenha()) &&
+				!ValidatorUtils.isEmpty(usuario.getConfirmSenha()) &&
 				!ValidatorUtils.isEmpty(usuario.getPerfil()) &&
 				!ValidatorUtils.isEmpty(usuario.getPerfil().getId());
 	}

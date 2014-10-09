@@ -9,7 +9,10 @@ import com.model.Aluno;
 public class AlunoFiltro extends Filter {
 
 	private String nome;
-
+	private Long turma;
+	private String sexo;
+	private boolean deficiencia;
+	
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Class getTableClass() {

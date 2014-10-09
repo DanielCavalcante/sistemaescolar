@@ -21,7 +21,7 @@ public class Usuario extends AbstractEntity {
 	private String login;
 	private String senha;
 	@ManyToOne
-	@JoinColumn(name = "perfil_id")
+	@JoinColumn(name = "id_perfil")
 	private Perfil perfil;
 	
 	@Column(nullable = false)

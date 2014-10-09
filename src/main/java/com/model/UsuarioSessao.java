@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 import br.com.caelum.vraptor.controller.ControllerMethod;
 
+import com.util.Constantes;
 import com.util.PermissaoUsuarioSessao;
 
 @SessionScoped
@@ -43,5 +44,9 @@ public class UsuarioSessao implements Serializable {
 	
 	public boolean temPermissao(ControllerMethod method) {
 		return controlePermissao.temPermissao(method);
+	}
+
+	public boolean isSenhaAtualizada() {
+		return !usuario.getSenha().equals(Constantes.DEFAULT_PASSWORD);
 	}
 }

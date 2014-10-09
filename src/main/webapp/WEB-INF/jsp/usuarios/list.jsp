@@ -28,10 +28,10 @@
 			<tbody>
 				<c:forEach items="${usuarioList}" var="usuario">
 					<tr>
-						<td><input name="id" value="${usuario.id}" type="checkbox"></td>
+						<td><input name="id" value="${usuario.id}" type="checkbox" class="checkbox"></td>
 						<td><a href="javascript:void(0)" onclick="edit(${usuario.id})">${usuario.nome}</a></td>
 						<td>${usuario.login}</td>
-						<td>${usuario.senha}</td>
+						<td>*</td>
 						<td>${usuario.perfil.nome}</td>
 					</tr>
 				</c:forEach>

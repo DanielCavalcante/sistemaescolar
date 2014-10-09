@@ -86,12 +86,17 @@ public class AlunosController extends ControllerUtil {
 				if (aluno.getTurmas() == null || aluno.getTurmas().isEmpty())
 					aluno.setTurmas(null);
 				
+				if (!aluno.isDeficiencia()) {
+					aluno.setTipoDeficiencia(null);
+				} else {
+					aluno.setListaDeficiencia(deficiencias);
+				}
+				
 				Cidade cidade = cidadeRepository.find(aluno.getCidadeNascimento().getId());
 				aluno.setCidadeNascimento(cidade);
 				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 				String data = sdf.format(aluno.getDataNascimento());
 				aluno.setDataNascimento(sdf.parse(data));
-				aluno.setListaDeficiencia(deficiencias);
 				aluno = repository.save(aluno);
 				inbox.message("msg.save.success").success();
 			}

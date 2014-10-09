@@ -8,6 +8,7 @@
 	<excludes>
 		<pattern>*/</pattern>
 		<pattern>/login</pattern>
+		<pattern>/relatorios/alunoRelatorio*</pattern>
 		<pattern>*.js</pattern>
 		<pattern>*.css</pattern>
 	</excludes>

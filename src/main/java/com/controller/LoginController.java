@@ -31,11 +31,12 @@ public class LoginController extends ControllerUtil {
 				request.getSession().setAttribute("usuarioSessao", usuarioSessao);
 				result.redirectTo(IndexController.class).index();
 			} else {
-				//Login invalido
+				inbox.message("msg.usuario.login.invalido").danger();;
 				result.redirectTo(this).login();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			inbox.message("msg.operacao.nao.realizada").danger();
 			result.redirectTo(this).login();
 		}
 	}

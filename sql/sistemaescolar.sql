@@ -15,7 +15,7 @@ create table usuario (
 	id bigserial not null,
 	nome text not null,
 	login text not null,
-	senha varchar(10) not null,
+	senha text not null,
 	root boolean default false,
 	id_perfil bigint not null,
 	constraint pk_usuario primary key(id)
@@ -154,7 +154,6 @@ alter table usuario add constraint fk_usuario_perfil foreign key (id_perfil) ref
 
 alter table escola add constraint fk_escola_endereco foreign key (id_endereco) references endereco(id);
 
-alter table aluno add constraint fk_aluno_deficiencia foreign key (id_deficiencia) references deficiencia (id);
 alter table aluno add constraint fk_aluno_documento foreign key (id_documento) references documento (id);
 alter table aluno add constraint fk_aluno_endereco foreign key (id_endereco) references endereco (id);
 alter table aluno add constraint fk_aluno_turma foreign key (id_turma) references turma (id);
@@ -182,6 +181,14 @@ alter table aluno_turma add constraint fk_aluno_turma_aluno foreign key (id_alun
 alter table aluno_turma add constraint fk_aluno_turma_turma foreign key (id_turma) references turma (id);
 
 --Inserts
+insert into perfil (nome, permissoes) values ('Geral', 
+	'USUARIO_LISTAR,USUARIO_CRIAR,USUARIO_EDITAR,USUARIO_DELETAR,ALUNO_LISTAR,ALUNO_CRIAR,ALUNO_EDITAR,ALUNO_DELETAR,
+	TURMA_LISTAR,TURMA_CRIAR,TURMA_EDITAR,TURMA_DELETAR,PROFESSOR_LISTAR,PROFESSOR_CRIAR,PROFESSOR_EDITAR,PROFESSOR_DELETAR,
+	PERFIL_LISTAR,PERFIL_CRIAR,PERFIL_EDITAR,PERFIL_DELETAR,ESCOLA_LISTAR,ESCOLA_EDITAR,
+	RELATORIO_ALUNO,RELATORIO_TURMA,RELATORIO_PROFESSOR');
+
+insert into usuario (nome, login, senha, root, id_perfil) values ('Adm', 'root', 'DF104C87F67637164F937E2EBC071CD89D57052074ACF4A452200473E977E554', true, 1);
+
 insert into estado (id, sigla, nome) values (1, 'AC', 'ACRE');
 insert into estado (id, sigla, nome) values (2, 'AL', 'ALAGOAS');
 insert into estado (id, sigla, nome) values (3, 'AP', 'AMAPÁ');
