@@ -13,7 +13,6 @@ body {
 				<th><fmt:message key="aluno.data.nascimento" /></th>
 				<th><fmt:message key="aluno.filiacao.mae" /></th>
 				<th><fmt:message key="aluno.filiacao.pai" /></th>
-				<th><fmt:message key="aluno.deficiencia" /></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -23,7 +22,6 @@ body {
 					<td><fmt:formatDate value="${a.dataNascimento}" pattern="dd/MM/yyyy"/></td>
 					<td>${a.filiacaoMae}</td>
 					<td>${a.filiacaoPai}</td>
-					<td>${a.deficiencia ? 'Sim' : 'Nao'}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
